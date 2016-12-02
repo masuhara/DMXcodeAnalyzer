@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>DMXcodeAnalyzerExtension.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>7A5D2A621DE077B300550154</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7A5D2A781DE0781A00550154</key>
 		<dict>
 			<key>primary</key>
 			<true/>
