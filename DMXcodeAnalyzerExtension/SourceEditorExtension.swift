@@ -10,27 +10,31 @@ import Foundation
 import XcodeKit
 
 class SourceEditorExtension: NSObject, XCSourceEditorExtension {
-    
-    var counter: Int = 0
+    var count = 0
+    var date = NSDate().timeIntervalSince1970
     
     func extensionDidFinishLaunching() {
         // If your extension needs to do any work at launch, implement this optional method.
-        print("Did finish Launching")
-        let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer(timer:)), userInfo: nil, repeats: true)
-        timer.fire()
+        NSLog("extension did finish launching")
+        
+        DispatchQueue.global().async {
+            self.update()
+        }
     }
     
-    /*
-    var commandDefinitions: [[XCSourceEditorCommandDefinitionKey: Any]] {
-        // If your extension needs to return a collection of command definitions that differs from those in its Info.plist, implement this optional property getter.
-        return []
-    }
-     */
-    
-    // Private 
-    func updateTimer(timer: Timer) {
-        counter += 1
-        print(counter)
+    func updateCounter() {
+        count += 1
+        NSLog("%d", self.count)
     }
     
+    func update() {
+        if NSDate().timeIntervalSince1970 - date > 0.9 {
+            date = NSDate().timeIntervalSince1970
+            updateCounter()
+        }
+        DispatchQueue.global().async {
+            self.update()
+        }
+        sleep(1)
+    }    
 }
